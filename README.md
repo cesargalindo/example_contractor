@@ -76,8 +76,7 @@ Contents in private directory is only accessible to server code
 
 Contents in public directory is accessible to client 
 
-## Testing
-TODO - minimal testing has been implemented.
+## TODO - testing with Mocha in progress
 
 The testing environment in this boilerplate based on [Meteor recommendation](https://guide.meteor.com/testing.html), and uses Mocha as testing framework along with Chai for assertion.
 
