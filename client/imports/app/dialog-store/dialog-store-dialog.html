@@ -1,0 +1,40 @@
+<span>
+  <br > <br >
+</span>
+  
+<div class="dialog-header">
+  <span class="dialog-title-text">Search for store</span>
+  <button mat-dialog-close class="dialog-close-button material-icons md24" id="forceCloseClick">close</button>
+</div>
+
+<br />
+
+<div *ngIf="storeName != 'click here to enter store name'">
+  {{storeName}} <br />
+  {{storeAddress1}} <br />
+  {{storeAddress2}}   <br />
+</div>
+<br />
+
+<div class="width-100">
+  <form [formGroup]="singleStoreForm">
+    <input [(ngModel)]="clearStoreField"
+            formControlName="value"
+            type="search"
+            class="places-autocomplete-input blue-border"
+            placeholder="{{paceHolderStoreName}}" >
+  </form>
+</div>
+
+<div class="width-100"> &nbsp; </div>
+
+<div *ngFor="let store of stores">
+    <button color="primary" type="button" mat-mini-fab (click)="singleStoreSelected(store)" >
+      <mat-icon>add</mat-icon>
+    </button>
+    {{store.name}} - {{store.address}} - {{store.location.coordinates[1]}}
+</div>
+
+<br />
+<br />
+

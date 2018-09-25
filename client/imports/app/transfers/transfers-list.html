@@ -1,0 +1,37 @@
+<mat-sidenav-container>
+  
+  <mat-sidenav #sidenav class="sidenav">
+    <side-menus (click)="sidenav.close()"></side-menus>
+  </mat-sidenav>
+
+  <top-toolbar [SIDENAV]="sidenav" ></top-toolbar>
+  <!-- ss #########################################################-->
+  
+  <div class="page-padding-3">
+    <h3>My Work - submitted items</h3>
+
+    <table>
+      <tr>
+        <th>Date <br /> Transferred</th>
+        <th># of Items</th>
+        <th>Payment</th>
+      </tr>
+
+      <tr *ngFor="let transfer of transfers">
+        <td>{{ transfer.created | date:'yMMMd' }} <br /> {{ transfer.created | date:'jms' }} </td>
+        <td class="center-stuff">{{ transfer.items }}</td>
+
+        <td *ngIf="transfer.payment == 1">pending</td>
+        <td *ngIf="transfer.payment == 2">paid</td>
+      </tr>  
+    </table>
+  </div>
+
+<!-- ss #########################################################-->
+</mat-sidenav-container>
+  
+  
+
+  
+
+

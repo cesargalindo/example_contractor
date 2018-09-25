@@ -1,0 +1,81 @@
+
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav class="sidenav">
+    <side-menus (click)="sidenav.close()"></side-menus>
+  </mat-sidenav>
+
+  <top-toolbar [SIDENAV]="sidenav" ></top-toolbar>
+  <!-- ss #########################################################-->
+  <!-- <p> <a  [routerLink]="['/set-password']" mat-button color="primary">Change Password</a> </p> -->
+  <!-- ss #########################################################-->
+
+  <div class="zo1-container">
+
+    <form [formGroup]="sliderSettingsForm" (submit)="saveSettingsInfo()" >
+
+      <div id="topdiv">
+        <a [routerLink]="['/landing']" mat-raised-button class="top-49">Back</a>
+        <button type="submit" mat-raised-button color="primary" class="top-49">Save</button>
+      </div>
+
+      <div class="page-padding-3">
+
+        <br /><br />
+
+        <span *ngIf="error" layout="row" layout-padding layout-wrap layout-margin class="alert-danger"> {{ error }} <br /> </span>
+        <span *ngIf="successMsg" layout="row" layout-padding layout-wrap layout-margin class="green"> {{ successMsg }}  <br /> </span>
+
+        <br />
+        
+        <div>Total number of images to transfer: {{snapsTotal}}</div>
+        <a mat-raised-button color="primary" (click)="uploadPictures()" >Upload Images to Cloud</a>
+
+        <br />  
+
+      <span *ngIf="display_spinner">
+        <br />
+        <mat-progress-spinner
+          [value]="spinnerValue">
+        </mat-progress-spinner>
+      </span>
+
+        <br /> <hr /> <br />  
+
+        <div class="row">
+          <div class="zo1-submit">
+
+            Picture quality: <b>{{qualityVal}}</b>
+            <mat-slider
+                thumbLabel
+                tickInterval="1"
+                min="50"
+                max="99"
+                step="1"
+                value="{{picQualityDefault}}"
+                (change)=picQualitySlider($event)>
+            </mat-slider>
+
+            <span class="grey font-14">If your app starts craching, set picture quality to a lower value.</span>
+
+
+          </div>
+        </div>
+      </div>
+
+      <hr /> <br />  
+      <a mat-raised-button color="primary" (click)="checkConnection()" >Check Connection</a>
+
+      <hr /> <br />  
+      <input type="number" placeholder="UPC number" class="item-size" formControlName="barcode">
+      <a mat-raised-button color="primary" (click)="checkBarcode()" >Check UPC Number</a>
+    </form>
+
+  </div>
+
+  <br /> <br /> 
+  
+  <!-- ss #########################################################-->
+</mat-sidenav-container>
+

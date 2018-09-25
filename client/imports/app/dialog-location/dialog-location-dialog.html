@@ -1,0 +1,30 @@
+<span> <br > </span>
+
+<div class="dialog-header">
+    <span class="dialog-title-text">Custom Location</span>
+    <button mat-dialog-close class="dialog-close-button material-icons md24" id="forceCloseClick">close</button>
+</div>
+
+<!--=================================== Custom =====================================================-->
+<div *ngIf="dialogPadding" class="dialog-padding"> <br /> <br /> <br /> </div>
+
+
+<div class="layout-margin-5-2">
+
+  <mat-radio-button #storesNearCustom
+    (click)="searchTypeSelected('Stores near custom')"
+    [checked]="selectedRadio=='Stores near custom'">
+    Custom location
+  </mat-radio-button>
+
+</div>
+
+<div class="layout-margin-5-2" (click)="inputClicked()"  >
+  <places-autocomplete *ngIf="searchEnabled" contextID="map_builtin" [persist]="true" (onSearchComplete)="customAddressSelected($event)"> </places-autocomplete>
+  <span>{{customAddress}} <br /> </span>
+</div>
+
+<br />
+
+
+

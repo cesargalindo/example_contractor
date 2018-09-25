@@ -1,0 +1,66 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav class="sidenav">
+    <side-menus (click)="sidenav.close()"></side-menus>
+  </mat-sidenav>
+
+  <top-toolbar [SIDENAV]="sidenav" ></top-toolbar>
+  <!-- ss #########################################################-->
+
+  <div id="topdiv">
+    <mat-toolbar color="primary" class="header-toolbar">
+      <mat-icon [routerLink]="['/landing']">arrow_back</mat-icon> &nbsp; REJECTED ITEMS
+    </mat-toolbar>
+  </div>
+
+  <div class="width-100 top-sub-div">
+    <tr><td class="top-sub-text1">Rejected items:</td>  <td class="top-sub-text2"> {{total}} </td> </tr>
+  </div>
+
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link [routerLink]="['/items-submitted']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">
+      Submitted
+    </a>
+
+    <a mat-tab-link [routerLink]="['/items-rejected']"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{exact: true}">
+      Rejected
+    </a>
+
+  </nav>
+
+  <span *ngIf="apolloItemsCount2 | async"></span>
+  <span *ngIf="display_spinner"> <mat-spinner></mat-spinner> </span>
+
+  <div class="layout-margin-5" *ngFor="let it of apolloItems2 | async | paginate: { id: 'itemPager', itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+
+
+    <h4> {{it.created | date:'yMMMdjms' }} </h4>
+
+    <div class="width-100 min-height-1 grey">
+      {{it.name | slice:0:32 }} <span *ngIf="it.name.length > 32">&hellip;</span>
+    </div>
+
+    <div class="width-40 min-height-1">Size</div>
+    <div class="width-40 min-height-1">{{it.size}}</div>
+    <div class="width-100 min-height-1 layout-last-right"> <a (click)="editItem(it)">Edit</a> </div>
+
+    <div class="width-40 min-height-1">Status</div>
+    <div class="width-40 min-height-1">{{ it.status | displayItemStatus }}</div>
+    <div class="width-100 min-height-1 layout-last-right">&nbsp;</div>
+
+  </div>
+
+  <br />
+
+  <div class="is-text-centered ">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }">.....</div>
+    <pagination-controls (pageChange)="getItems($event)" id="itemPager"></pagination-controls>
+  </div>
+
+  <!-- ss #########################################################-->
+</mat-sidenav-container>
+

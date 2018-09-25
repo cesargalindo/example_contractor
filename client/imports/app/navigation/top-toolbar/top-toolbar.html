@@ -1,0 +1,35 @@
+<mat-toolbar color="primary" class="header-toolbar"  *ngIf="showTopToolbar">
+
+  <span (click)="SIDENAV.open()">
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+  </span>
+
+  <span> {{reactiveTitle}} </span>
+
+  <!--<a routerLink="/" class="display-none"> ZoJab </a>-->
+  <!--<a routerLinkActive="display-active" [routerLinkActiveOptions]="{ exact: true }" class="display-none" routerLink="/" > ZoJab </a>-->
+
+
+  <span class="fill-remaining-space"></span>
+
+  <span class="go-right">
+
+    <div *ngIf="!isLoggedIn">
+      <a mat-button [routerLink]="['/login']" >Login</a>
+      <a mat-button [routerLink]="['/signup']">Sign up</a>
+    </div>
+
+
+    <span *ngIf="isLoggedIn">
+
+      <mat-icon [routerLink]="['/landing']" [ngStyle]="isCurrent('HOME')" class="font-30">home</mat-icon>
+      &nbsp;
+      &nbsp;      
+    </span>
+
+  </span>
+
+
+</mat-toolbar>

@@ -1,0 +1,35 @@
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav class="sidenav">
+    <side-menus (click)="sidenav.close()"></side-menus>
+  </mat-sidenav>
+
+  <top-toolbar [SIDENAV]="sidenav" ></top-toolbar>
+  <!-- ss #########################################################-->
+
+  <div id="topdiv">
+    <mat-toolbar color="primary" class="header-toolbar">
+      <mat-icon (click)="redirectHome()">arrow_back</mat-icon> &nbsp; REQUEST or SUBMIT
+    </mat-toolbar>
+  </div>
+
+  <!--<div class="width-100 sm-med-height"> &nbsp; </div>-->
+
+  <p class="green"> The new item has been successfully added.</p>
+  <p>Would you like to Request or Submit a price?</p>
+
+
+  <div class="width-100 small-height"> &nbsp; </div>
+  <a mat-raised-button color="primary" (click)="requestPrice()" class="top-49">Request</a>
+  <a mat-raised-button color="primary" (click)="submitPrice()" class="top-49">Submit</a>
+  </div>
+
+  <br />
+
+  <!-- ss #########################################################-->
+</mat-sidenav-container>
+
+
+
+
+

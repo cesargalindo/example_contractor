@@ -1,0 +1,36 @@
+<mat-sidenav-container>
+    
+  <mat-sidenav #sidenav class="sidenav">
+    <side-menus (click)="sidenav.close()"></side-menus>
+  </mat-sidenav>
+
+  <top-toolbar [SIDENAV]="sidenav" ></top-toolbar>
+  <!-- ss #########################################################-->
+
+  <span *ngIf="display_spinner" class="center-stuff">
+      <mat-spinner class="thumb-spinner"></mat-spinner>
+  </span>
+
+  <span *ngIf="!display_spinner" class="center-stuff">
+    <mat-icon (click)="barcodeCapture()" class="md-36 md-dark padding-dialog1c">camera</mat-icon> &nbsp; &nbsp; &nbsp; &nbsp; <span class="red"> Images to upload: {{snapsTotal}} </span>
+  </span>
+
+  <h3>Total items: {{ totalCount }} </h3> 
+  
+  <div *ngFor="let item of dataArray | paginate: { id: 'server', itemsPerPage: pageSize, currentPage: p, totalItems: totalCount }">
+    {{item.created | displayFormatDate}} <br /> upc: {{item.upc}}
+    <span class="center-stuff"> <img class="w125" src="{{item.image}}">  </span>
+    <hr>
+  </div>
+
+  <br />
+
+  <div class="is-text-centered ">
+    <pagination-controls (pageChange)="getPageX($event)" id="server"></pagination-controls>
+  </div>
+
+  <p class="red">Go to "Settings" page to upload images to cloud.</p>
+
+  <!-- ss #########################################################-->
+
+</mat-sidenav-container>

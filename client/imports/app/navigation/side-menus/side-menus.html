@@ -1,0 +1,30 @@
+<div id="sidemenu">
+
+  <!-- menu opens when trigger button is clicked -->
+  <style>
+      #sidemenu mat-icon {color:white; vertical-align:middle}
+  </style>
+    <a mat-menu-item [routerLink]="['/landing']"> <mat-icon>home</mat-icon> Home </a> <br />
+    <!-- <a *ngIf="!capturePrice" mat-menu-item [routerLink]="['/landing']"> <mat-icon>home</mat-icon> Home </a> -->
+    <!-- <a *ngIf="capturePrice" mat-menu-item [routerLink]="['/landing2']"> <mat-icon>home</mat-icon> Home </a> <br /> -->
+        
+    <span [hidden]="!isLoggedIn">
+      <a mat-menu-item [routerLink]="['/transfers']"><mat-icon>payment</mat-icon> My Work</a> <br />  
+      <a mat-menu-item [routerLink]="['/settings']"><mat-icon>settings</mat-icon> Settings </a> <br />  
+      <!-- <a *ngIf="!capturePrice" mat-menu-item [routerLink]="['/settings']"><mat-icon>settings</mat-icon> Settings </a>  -->
+      <!-- <a *ngIf="capturePrice" mat-menu-item [routerLink]="['/settings2']"><mat-icon>settings</mat-icon> Settings </a> <br /> -->
+      <a mat-menu-item [routerLink]="['/not-found']"><mat-icon>shop</mat-icon> Not Found</a> <br />
+      <a mat-menu-item [routerLink]="['/items-submitted']"><mat-icon>local_mall</mat-icon> Items</a> <br />
+      <a mat-menu-item (click)="logout()" ><mat-icon>power_settings_new</mat-icon> Sign Out </a> <br />
+    </span>
+
+    <span [hidden]="isLoggedIn">
+    <a mat-menu-item disabled><mat-icon>power_settings_new</mat-icon> Sign Out </a> <br />
+    </span>
+
+    <span [hidden]="!isAdmin">
+    <a mat-menu-item [routerLink]="['/issues']">Issues</a> <br />
+    </span>
+
+
+</div>
